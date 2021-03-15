@@ -33,10 +33,15 @@ Depois
 ```
 npm install
 ```
+Quando finalizado crie o Arquivo .env com a seguinte linha
+```
+REACT_APP_BACKENDHOST=http://localhost:8000
+```
 Quando finalizado
 ```
 npm start
 ```
+
 ## Autor
 
 * **Caio Victor da Silva Viga** - *Mantainer* - [iVega123](https://github.com/iVega123)
