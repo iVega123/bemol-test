@@ -13,7 +13,7 @@ Node js e NPM
 ### Instalando
 Você precisa seguir os seguintes passos!
 
-Back-End
+## Back-End
 ```
 cd Bemol-Api
 ```
@@ -25,7 +25,11 @@ Quando finalizado
 ```
 npm start
 ```
-Front-End
+Para Visualizar a Documentação dos endpoints
+```
+http://localhost:8000/api-docs/
+```
+## Front-End
 ```
 cd Bemol-App
 ```
