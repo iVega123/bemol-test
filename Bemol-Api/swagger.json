@@ -1,0 +1,250 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Bemol API",
+        "description": "API para o teste da bemol digital",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:8000",
+    "basePath": "/api",
+    "tags": [
+        {
+            "name": "Usuários",
+            "description": "Rotas para a administração dos usuários"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/users": {
+            "get": {
+                "tags": [
+                    "Usuários"
+                ],
+                "summary": "Mostra todos os usuários criados!",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Usuários"
+                ],
+                "description": "Cria um novo usuário no sistema!",
+                "parameters": [
+                    {
+                        "name": "Usuário",
+                        "in": "body",
+                        "description": "Usuário que queremos criar!",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Novo usuário criado!",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }, 
+            "delete": {
+                "tags": [
+                    "Usuários"
+                ],
+                "summary": "Deleta todos os usuários criados!",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID do usuário que queremos encontrar!",
+                    "type": "objectId"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Usuários"
+                ],
+                "summary": "Mostra o usuário pela id!",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualizar o Usuário pela Id",
+                "tags": [
+                    "Usuários"
+                ],
+                "parameters": [
+                    {
+                        "name": "Usuário",
+                        "in": "body",
+                        "description": "Usuário com os novos valores!",
+                        "schema": {
+                            "$ref": "#/definitions/updateUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuário atualizado!",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletar o usuário pela a ID",
+                "tags": [
+                    "Usuários"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuário foi Deletado!",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "required": [
+                "Nome",
+                "Email",
+                "Senha",
+                "Cpf",
+                "Endereco"
+            ],
+            "properties": {
+                "Nome": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "Email": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "Senha": {
+                    "type": "string"
+                },
+                "Cpf": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "Endereço": {
+                    "type": "object",
+                    "items": {
+                        "properties": {
+                            "Logradouro": {
+                                "type": "string"
+                            },
+                            "Cep": {
+                                "type": "number"
+                            },
+                            "Bairro": {
+                                "type": "string"
+                            },
+                            "Localidade": {
+                                "type": "string"
+                            },
+                            "Uf": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "updateUser": {
+            "required": [
+                "Nome",
+                "Email",
+                "Senha",
+                "Cpf"
+            ],
+            "properties": {
+                "Nome": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "Email": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "Senha": {
+                    "type": "string"
+                },
+                "Cpf": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "Endereço": {
+                    "type": "object",
+                    "properties": {
+                        "Logradouro": {
+                            "type": "string"
+                        },
+                        "Cep": {
+                            "type": "number"
+                        },
+                        "Bairro": {
+                            "type": "string"
+                        },
+                        "Localidade": {
+                            "type": "string"
+                        },
+                        "Uf": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "Users": {
+            "type": "array",
+            "$ref": "#/definitions/User"
+        }
+    }
+}
